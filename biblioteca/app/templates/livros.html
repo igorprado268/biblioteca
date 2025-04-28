@@ -86,10 +86,13 @@ href="/admin/">Administração</a>
 <td>{{ livros.preco }}</td>
 <td>{{ livros.data_plub }}</td>
 <td>{{ livros.status }}</td>
+<td><a href="livros/delete/{{ livros.id }}"
+class="btn btn-danger">Excluir</a></td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
+
 </div>
 <!-- Incluindo jQuery e Bootstrap JS -->
 <script

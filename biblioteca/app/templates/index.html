@@ -52,6 +52,7 @@ href="/admin/">Administração</a>
 </ul>
 </div>
 </nav>
+
 <div class="container mt-5">
 <div class="jumbotron text-center">
 <h1 class="display-4">Olá, é bom te ver por aqui</h1>
@@ -59,6 +60,44 @@ href="/admin/">Administração</a>
 <p class="lead">Seja Bem Vindo(A)</p>
 </div>
 </div>
+
+<tbody>
+    {% for livros in livros %}
+    <tr>
+    <td>{{ livros.nome }}</td>
+    <td>{{ livros.autor }}</td>
+    <td>{{ livros.editora }}</td>
+    <td>
+        {% for genero in livros.genero.all %}
+        {{ genero.nome }}{% if not forloop.last %},
+        {% endif %}
+        {% endfor %}
+        </td>
+        <td>{{ livros.preco }}</td>
+        <td>{{ livros.data_plub }}</td>
+        <td>{{ livros.status }}</td>
+        <td><a href="livros/delete/{{ livros.id }}"
+        class="btn btn-danger">Excluir</a></td>
+        </tr>
+        {% endfor %}
+</tbody>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Editora</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Data Publicação</th>
+            <th scope="col">Status</th>
+            <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    
+    
+    
 <!-- Incluindo jQuery e Bootstrap JS -->
 <script
 src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

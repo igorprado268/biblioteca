@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages  # Adicionando a importação do messages
 from .models import *
 from django.views import View
 
@@ -13,10 +14,10 @@ class LivrosView(View):
         return render(request, 'livros.html', {'livros': livros})
 
 
-# class EmprestimoView(View):
-#     def get(self, request, *args, **kwargs):
-#         reservas = Emprestimo.objects.all()
-#         return render(request, 'reserva.html', {'reservas': reservas})
+class EmprestimoView(View):
+      def get(self, request, *args, **kwargs):
+          reservas = Emprestimo.objects.all()
+          return render(request, 'reserva.html', {'reservas': reservas})
 
 
 class CidadesView(View):
@@ -47,3 +48,24 @@ class GenerosView(View):
     def get(self, request, *args, **kwargs):
         generos = Genero.objects.all()
         return render(request, 'genero.html', {'generos': generos})
+
+class ConsultaView(View):
+    def get(self, request, *args, **kwargs):
+        livros = Livro.objects.all()  # Ajuste conforme sua lógica
+        return render(request, 'livros.html', {'livros': livros})
+
+class ReservaView(View):
+    def get(self, request, *args, **kwargs):
+        reservas = Emprestimo.objects.all()  # Agora, o modelo Emprestimo está definido corretamente
+        return render(request, 'reserva.html', {'reservas': reservas})
+
+class DeleteLivroView(View):
+    def get(self, request, id, *args, **kwargs):
+        livro = Livro.objects.get(id=id)
+        livro.delete()
+        messages.success(request, 'Livro excluído com sucesso!')  # Success message
+        return redirect('livros')
+    
+
+
+
