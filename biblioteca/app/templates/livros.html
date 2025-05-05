@@ -77,16 +77,16 @@ href="/admin/">Administração</a>
 </tr>
 </thead>
 <tbody>
-{% for livros in livros %}
+{% for livro in livros %}
 <tr>
-<td>{{ livros.nome }}</td>
-<td>{{ livros.autor }}</td>
-<td>{{ livros.editora }}</td>
-<td>{{ livros.genero }} </td>
-<td>{{ livros.preco }}</td>
-<td>{{ livros.data_plub }}</td>
-<td>{{ livros.status }}</td>
-<td><a href="livros/delete/{{ livros.id }}"
+<td>{{ livro.nome }}</td>
+<td>{{ livro.autor }}</td>
+<td>{{ livro.editora }}</td>
+<td>{{ livro.genero }} </td>
+<td>{{ livro.preco }}</td>
+<td>{{ livro.data_plub }}</td>
+<td>{{ livro.status }}</td>
+<td><a href="{% url 'delete' livro.id %}"
 class="btn btn-danger">Excluir</a></td>
 </tr>
 {% endfor %}
